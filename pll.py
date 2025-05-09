@@ -5,6 +5,7 @@ from Bio import SeqIO
 
 
 def compute_pll(seq: str, model, tokenizer, device) -> float:
+    """Compute the pseudo-log-likelihood scores for each generated sequence"""
     pll = 0.0
     seq = seq.upper()
 
@@ -25,6 +26,8 @@ def compute_pll(seq: str, model, tokenizer, device) -> float:
 
 
 def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D"):
+    """Rank the generated sequences based on pseudo-log-likelihood sccores."""
+    
     tokenizer = EsmTokenizer.from_pretrained(model_name)
     model = EsmForMaskedLM.from_pretrained(model_name)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
