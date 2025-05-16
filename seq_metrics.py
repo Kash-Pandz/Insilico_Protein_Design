@@ -112,13 +112,13 @@ def get_seq_metrics(fasta_file, active_site_positions=None, gap_open_penalty=-10
             active_site_score = None
             target_active_site_seq = None
         
-    results.append({
-        "identifier": seq_id,
-        "sequence": seq,
-        "global_similarity": global_similarity,
-        "active_site_score": active_site_score,
-        "active_site_seq": target_active_site_seq,
-        **seq_props
-    })
+        results.append({
+            "identifier": seq_id,
+            "sequence": seq,
+            "global_similarity": global_similarity,
+            "active_site_score": active_site_score,
+            "active_site_seq": target_active_site_seq,
+            **seq_props
+        })
     
     return pd.DataFrame(results)
