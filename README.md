@@ -28,3 +28,9 @@ Local Colab installation instructions can be found:
 https://github.com/sokrypton/ColabFold
 
 https://github.com/YoshitakaMo/localcolabfold
+
+HHBlits package can be found:
+
+https://github.com/soedinglab/hh-suite
+
+Alternatively jobs can be submitted to https://toolkit.tuebingen.mpg.de/tools/hhblits
