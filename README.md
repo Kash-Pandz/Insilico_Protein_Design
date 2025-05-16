@@ -17,7 +17,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 - LigandMPNN can be used to redesign active/binding site residues alone using the --redesigned_residues flag. This will only redesign specified residues and fix everything else. The ligand_mpnn.py provided is for sequence redesign fixing a specified number of residues.
 
-# References
+# Resources
 
 ProteinMPNN and LigandMPNN weights and inference script can be found:
 
