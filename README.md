@@ -10,7 +10,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 3) Run ProteinMPNN (protein_mpnn.py) or LigandMPNN (ligand_mpnn.py) with desired parameters such as fixed residues, biasing towards/away from particular residues and omitting residues. A broad sampling temperature range can be used (e.g. 0.1-1.0) to generate increased sequence diversity.
 4) 
 5) Selection criteria:
-   - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh
+   - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh (alternatively use the colabfold notebook provided from https://github.com/sokrypton/ColabFold)
    - Sequence-based metrics (sequence properties and pseudo-log-likelihoods) 
 
 # N.B.  
