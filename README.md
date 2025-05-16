@@ -13,9 +13,19 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
    - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh (alternatively use the colabfold notebook provided from https://github.com/sokrypton/ColabFold)
    - Sequence-based metrics (sequence properties and pseudo-log-likelihoods) 
 
+
+# Packages needed for to run analysis scripts 
+
+- Biopython: https://biopython.org/
+- MDAnalysis: https://www.mdanalysis.org/
+- TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
+- transformers:  https://huggingface.co/docs/transformers/installation
+  
+
 # N.B.  
 
 - LigandMPNN can be used to redesign active/binding site residues alone using the --redesigned_residues flag. This will only redesign specified residues and fix everything else. The ligand_mpnn.py provided is for sequence redesign fixing a specified number of residues.
+
 
 # Resources
 
