@@ -19,6 +19,6 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 # References
 
-ProteinMPNN and LigandMPNN weights and inference script can be found from:
+ProteinMPNN and LigandMPNN weights and inference script can be found:
 
 https://github.com/dauparas/LigandMPNN?tab=readme-ov-file
