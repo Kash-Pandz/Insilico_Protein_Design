@@ -36,7 +36,10 @@ https://github.com/soedinglab/hh-suite
 
 Alternatively jobs can be submitted to https://toolkit.tuebingen.mpg.de/tools/hhblits
 
-- Biopython: https://biopython.org/
-- MDAnalysis: https://www.mdanalysis.org/
-- TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
-- transformers:  https://huggingface.co/docs/transformers/installation
+Biopython: https://biopython.org/
+
+MDAnalysis: https://www.mdanalysis.org/
+
+TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
+
+transformers:  https://huggingface.co/docs/transformers/installation
