@@ -13,14 +13,6 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
    - Sequence-based metrics (sequence properties and pseudo-log-likelihoods) 
 
 
-# Packages needed for to run analysis scripts 
-
-- Biopython: https://biopython.org/
-- MDAnalysis: https://www.mdanalysis.org/
-- TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
-- transformers:  https://huggingface.co/docs/transformers/installation
-  
-
 # N.B.  
 
 - LigandMPNN can be used to redesign active/binding site residues alone using the --redesigned_residues flag. This will only redesign specified residues and fix everything else. The ligand_mpnn.py provided is for sequence redesign fixing a specified number of residues.
@@ -43,3 +35,8 @@ HHBlits package can be found:
 https://github.com/soedinglab/hh-suite
 
 Alternatively jobs can be submitted to https://toolkit.tuebingen.mpg.de/tools/hhblits
+
+- Biopython: https://biopython.org/
+- MDAnalysis: https://www.mdanalysis.org/
+- TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
+- transformers:  https://huggingface.co/docs/transformers/installation
