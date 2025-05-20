@@ -7,7 +7,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 1) Starting apo or holo protein structure (crystal or alphafold)
 2) Define design space - consider fixing functionally important residues (e.g. catalytic residues and evolutionary conserved residues). Catalytic residues can be determined from literature or using tools such as m-CSA. Evolutionary conserved residues can be determined using multiple sequence alignments (e.g. HHBlits)
-3) Run ProteinMPNN (protein_mpnn.py) or LigandMPNN (ligand_mpnn.py) with desired parameters such as fixed residues, biasing towards/away from particular residues and omitting residues. A broad sampling temperature range can be used (τ ∈ {0.1, 0.2, ..., 1})) to generate increased sequence diversity. 
+3) Run ProteinMPNN (protein_mpnn.py) or LigandMPNN (ligand_mpnn.py) with desired parameters such as fixed residues, biasing towards/away from particular residues and omitting residues. A broad sampling temperature range can be used (τ ∈ {0.1, 0.2, ..., 1}) to generate increased sequence diversity. 
 4) Selection criteria for laboratory testing:
    - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh (alternatively use the colabfold notebook provided from https://github.com/sokrypton/ColabFold).
    - Sequence-based metrics:
