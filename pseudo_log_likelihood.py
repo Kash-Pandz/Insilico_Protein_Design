@@ -47,5 +47,5 @@ def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D"):
             "pll_avg": pll_avg
         })
 
-    ranked = sorted(results, key=lambda x: x["pll"], reverse=True)
+    ranked = sorted(results, key=lambda x: x["pll_avg"], reverse=True)
     return ranked
