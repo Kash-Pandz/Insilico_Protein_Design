@@ -9,8 +9,10 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 2) Define design space - consider fixing functionally important residues (e.g. catalytic residues and evolutionary conserved residues). Catalytic residues can be determined from literature or using tools such as m-CSA. Evolutionary conserved residues can be determined using multiple sequence alignments (e.g. HHBlits)
 3) Run ProteinMPNN (protein_mpnn.py) or LigandMPNN (ligand_mpnn.py) with desired parameters such as fixed residues, biasing towards/away from particular residues and omitting residues. A broad sampling temperature range can be used (e.g. 0.1-1.0) to generate increased sequence diversity. 
 4) Selection criteria for laboratory testing:
-   - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh (alternatively use the colabfold notebook provided from https://github.com/sokrypton/ColabFold)
-   - Sequence-based metrics (sequence properties and pseudo-log-likelihoods) 
+   - Structure-based metrics (pLDDT, RMSD and TMScore) from  structure predictions made with colabfold.sh (alternatively use the colabfold notebook provided from https://github.com/sokrypton/ColabFold).
+   - Sequence-based metrics:
+      - sequence properties: global similarity, active site similarity, hydropathy and charged fraction
+      - pseudo-log-likelihoods (ESM-2): How biologically plausible a sequence is? Does it align well to natural sequences? A higher PLL (closer to zero, since log-probs are negative) suggests the sequence is more natural-like. 
 
 
 # N.B.  
