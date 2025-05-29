@@ -26,7 +26,7 @@ def compute_pll(seq: str, model, tokenizer, device) -> float:
 
 
 def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D"):
-    """Rank the generated sequences based on pseudo-log-likelihood sccores."""
+    """Rank the generated sequences based on pseudo-log-likelihood scores."""
     
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = EsmForMaskedLM.from_pretrained(model_name)
