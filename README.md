@@ -16,6 +16,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 ### LigandMPNN/ProteinMPNN
 - Installation instructions and inference scripts: https://github.com/dauparas/LigandMPNN
+- Model weights can be downloaded:
   
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"`
 
