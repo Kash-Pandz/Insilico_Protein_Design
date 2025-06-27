@@ -2,6 +2,16 @@
 
 This repository provides tools for applying ProteinMPNN and LigandMPNN, which are graph neural network-based models for protein sequence design. LigandMPNN extends the capabilities of ProteinMPNN by incorporating ligand atoms into the message-passing framework. 
 
+# Overview
+
+- ligand_mpnn.py: Sequence Design (with ligand)
+- protein_mpnn.py: Sequence Design (without ligand)
+- colabfold.sh: Starting protein prediction/forward folding with localcolab fold
+- plddt.py: predicted local distance difference test (pLDDT) for all structure predictions
+- self_consistency.py: Self-consistency metrics TMScore and RMSD for designs
+- seq_metrics.py: The global similarity, active site similarity, sequence properties
+- pseudo_log_likelihood.py: log likelihood for designed sequences used for design filtering
+
 
 # Steps:
 
