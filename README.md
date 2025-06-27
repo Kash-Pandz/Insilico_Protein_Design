@@ -12,6 +12,12 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 - seq_metrics.py: The global similarity, active site similarity, sequence properties
 - pseudo_log_likelihood.py: log likelihood for designed sequences used for design filtering
 
+# Setup
+
+## LigandMPNN/ProteinMPNN
+- Source: https://github.com/dauparas/LigandMPNN
+wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"
+
 
 # Steps:
 
