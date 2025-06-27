@@ -26,7 +26,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_020_16.pt -O $1"/ligandmpnn_v_32_020_16.pt"`
 
 
-## Colab Fold
+### Colab Fold
 - Follow installation instructions:
   -  https://github.com/sokrypton/ColabFold
   -  https://github.com/YoshitakaMo/localcolabfold
