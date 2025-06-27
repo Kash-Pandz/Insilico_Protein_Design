@@ -16,7 +16,8 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 ## LigandMPNN/ProteinMPNN
 - Source: https://github.com/dauparas/LigandMPNN
-wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"
+- 
+### wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"
 
 
 # Steps:
