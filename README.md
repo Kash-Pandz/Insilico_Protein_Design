@@ -13,8 +13,10 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 - pseudo_log_likelihood.py: log likelihood for designed sequences used for design filtering
 
 # Setup
+
+## LigandMPNN/ProteinMPNN
 - Source: https://github.com/dauparas/LigandMPNN
-- 
+  
   ### ProteinMPNN
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"`
 
