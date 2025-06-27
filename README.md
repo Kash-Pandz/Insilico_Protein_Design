@@ -15,7 +15,7 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 # Setup
 
 ## LigandMPNN/ProteinMPNN
-- Source: https://github.com/dauparas/LigandMPNN
+- Installation instructions and inference scripts: https://github.com/dauparas/LigandMPNN
   
 ### ProteinMPNN
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"`
@@ -25,6 +25,11 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_020_16.pt -O $1"/ligandmpnn_v_32_020_16.pt"`
 
+
+## Colab Fold
+- Follow installation instructions:
+  -  https://github.com/sokrypton/ColabFold
+  -  https://github.com/YoshitakaMo/localcolabfold
 
 # Steps:
 
@@ -42,30 +47,3 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 - LigandMPNN can be used to redesign active/binding site residues alone using the --redesigned_residues flag. This will only redesign specified residues and fix everything else. The ligand_mpnn.py provided is for sequence redesign fixing a specified number of residues.
 - LigandMPNN outputs protein structures of the generated sequences with packed side-chains. These structures can be optimised using Pyrosetta or OpenMM energy minimisation. Both will require parameterisation of the ligand. It is recommended to "refold" the generated sequences with an independent folding software e.g. AF2, ESMFold and ColabFold. 
-
-
-# Resources
-
-ProteinMPNN and LigandMPNN weights and inference script can be found:
-
-https://github.com/dauparas/LigandMPNN?tab=readme-ov-file
-
-Local Colab installation instructions can be found:
-
-https://github.com/sokrypton/ColabFold
-
-https://github.com/YoshitakaMo/localcolabfold
-
-HHBlits package can be found:
-
-https://github.com/soedinglab/hh-suite
-
-Alternatively jobs can be submitted to https://toolkit.tuebingen.mpg.de/tools/hhblits
-
-Biopython: https://biopython.org/
-
-MDAnalysis: https://www.mdanalysis.org/
-
-TMScore: https://zhanggroup.org/TM-score/TMscore.cpp
-
-transformers:  https://huggingface.co/docs/transformers/installation
