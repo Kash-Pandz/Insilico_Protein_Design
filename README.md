@@ -14,15 +14,11 @@ This repository provides tools for applying ProteinMPNN and LigandMPNN, which ar
 
 # Setup
 
-## LigandMPNN/ProteinMPNN
+### LigandMPNN/ProteinMPNN
 - Installation instructions and inference scripts: https://github.com/dauparas/LigandMPNN
   
-### ProteinMPNN model
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/proteinmpnn_v_48_020.pt -O $1"/proteinmpnn_v_48_020.pt"`
-
-### LigandMPNN model
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_010_25.pt -O $1"/ligandmpnn_v_32_010_25.pt"`
-
 `wget -q https://files.ipd.uw.edu/pub/ligandmpnn/ligandmpnn_v_32_020_16.pt -O $1"/ligandmpnn_v_32_020_16.pt"`
 
 
