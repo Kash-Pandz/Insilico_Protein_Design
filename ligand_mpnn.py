@@ -11,7 +11,8 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="LigandMPNN Sequence Design Script")
     parser.add_argument("--pdb_dir", type=str, required=True, help="Directory containing PDB files.")
     parser.add_argument("--temps", type=float, nargs='+', required=True, help="Sampling temperatures (e.g., 0.1 0.2 0.3).")
-    parser.add_argument("--fixed_residues", type=str, required=True, help="Fixed residues (e.g., 'A:15,16,17').")
+    parser.add_argument("--fixed_res", type=str, required=True, help="Fixed residues (e.g., 'A1-A10 A12').")
+    parser.add_argument("--redesign_res", type=str, default=None, help="Residues to be redesigned (e.g., 'A13-A16 A18').")
     parser.add_argument("--omit_AA", type=str, default=None, help="Residues to be omitted from designs (e.g., 'C').")
     parser.add_argument("--checkpoint_ligandmpnn", type=str, default="/PATH/LigandMPNN/model_params/ligandmpnn_v_32_010_25.pt", help="Path to LigandMPNN model checkpoint.")
     parser.add_argument("--checkpoint_sc", type=str, default="/PATH/LigandMPNN/model_params/ligandmpnn_sc_v_32_002_16.pt", help="Path to LigandMPNN side chain model checkpoint.")
@@ -47,6 +48,9 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpn
 
             if omit_aa:
                 mpnn_cmd.extend(["--omit_AA", omit_aa])
+
+            if redesign_res:
+                mpnn_cmd.extend(["--redesigned_residues", redesign_res])
 
             mpnn_cmd.extend([
                 "--checkpoint_ligand_mpnn", checkpoint_ligandmpnn,
@@ -102,7 +106,8 @@ if __name__ == "__main__":
     run_seq_design(
         args.pdb_dir,
         args.temps,
-        args.fixed_residues,
+        args.fixed_res,
+        args.redesigned_res
         args.omit_AA,
         args.checkpoint_ligandmpnn,
         args.checkpoint_sc,
