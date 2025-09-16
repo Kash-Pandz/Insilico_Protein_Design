@@ -22,10 +22,9 @@ def parse_arguments():
 
 def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpnn, checkpoint_sc, number_of_batches, batch_size):
     pdb_files = glob.glob(os.path.join(pdb_dir, "*.pdb"))
-
     if not pdb_files:
         logger.error("No PDB files found in the specified directory!")
-        return
+        sys.exit(1)
 
     for pdb_file in pdb_files:
         pdb_name = os.path.splitext(os.path.basename(pdb_file))[0]
@@ -97,20 +96,7 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpn
     logger.info("Sequence design and FASTA processing completed!")
 
 if __name__ == "__main__":
-    args = parse_arguments()
-
     logger.remove()
     logger.add(sys.stdout, level="INFO", format="{time} {level} {message}")
-
-    logger.info("Starting sequence design and FASTA processing.")
-    run_seq_design(
-        args.pdb_dir,
-        args.temps,
-        args.fixed_res,
-        args.redesigned_res
-        args.omit_AA,
-        args.checkpoint_ligandmpnn,
-        args.checkpoint_sc,
-        args.number_of_batches,
-        args.batch_size
-    )
+    args = parse_arguments()
+    run_seq_design(args)
