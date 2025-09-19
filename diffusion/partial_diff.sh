@@ -27,4 +27,4 @@ for INPUT_PDB in "$INPUT_DIR"/*.pdb; do
     done
 done
 
-echo "All RFdiffusion runs completed!"
+echo "Partial diffusion runs completed!"
