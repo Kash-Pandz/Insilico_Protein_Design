@@ -57,8 +57,8 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_proteinmp
                 "--fixed_residues", fixed_residues,
             ]
 
-            if omit_aa:
-            mpnn_cmd.extend(["--omit_AA", omit_aa])
+            if args.omit_aa:
+                mpnn_cmd.extend(["--omit_AA", args.omit_aa])
 
             logger.info(f"Running {args.model_type} on {pdb_name} at T={temp}")
             subprocess.run(mpnn_cmd, check=True)
