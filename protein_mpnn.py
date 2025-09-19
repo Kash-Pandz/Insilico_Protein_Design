@@ -55,38 +55,39 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_proteinmp
                 "--batch_size", str(batch_size),
                 "--temperature", str(temp),
                 "--fixed_residues", fixed_residues,
-        ]
+            ]
 
-        if omit_aa:
+            if omit_aa:
             mpnn_cmd.extend(["--omit_AA", omit_aa])
 
-        logger.info(f"Running {args.model_type} on {pdb_name} at T={temp}")
-        subprocess.run(mpnn_cmd, check=True)
+            logger.info(f"Running {args.model_type} on {pdb_name} at T={temp}")
+            subprocess.run(mpnn_cmd, check=True)
     
-        # Process FASTA files
-        seqs_dir = out_dir / "seqs"
-        logger.info(f"Checking directory for fasta files: {seqs_dir}")
+            # Process FASTA files
+            seqs_dir = out_dir / "seqs"
+            logger.info(f"Checking directory for fasta files: {seqs_dir}")
 
-        if seqs_dir.exists():
-            logger.info(f"Listing files in {seqs_dir}: {os.listdir(seqs_dir)}")
+            if seqs_dir.exists():
+                logger.info(f"Listing files in {seqs_dir}: {os.listdir(seqs_dir)}")
 
-        fasta_files = list(seqs_dir.glob("*.fa"))
-        if not fasta_files:
-            logger.warning(f"No fasta files found in {seqs_dir}")
-            continue
+            fasta_files = list(seqs_dir.glob("*.fa"))
+            if not fasta_files:
+                logger.warning(f"No fasta files found in {seqs_dir}")
+                continue
 
-        input_fasta = fasta_files[0]
-        temp_str = str(temp).replace('.', '')
-        output_fasta = out_dir / f"{pdb_name}_seqs_{temp_str}.fa"
+            input_fasta = fasta_files[0]
+            temp_str = str(temp).replace('.', '')
+            output_fasta = out_dir / f"{pdb_name}_seqs_{temp_str}.fa"
 
-        records = list(SeqIO.parse(input_fasta, "fasta"))
-        with open(output_fasta, "w") as out_fname:
-            for i, record in enumerate(records[1:], 1): # skip the first sequence
-                new_header = f"{pdb_name}_temp_{temp_str}_seq_{i}"
-                record.id = new_header
-                SeqIO.write(record, out_fname, "fasta")
+            records = list(SeqIO.parse(input_fasta, "fasta"))
+            with open(output_fasta, "w") as out_fname:
+                for i, record in enumerate(records[1:], 1): # skip the first sequence
+                    new_header = f"{pdb_name}_temp_{temp_str}_seq_{i}"
+                    record.id = new_header
+                    record.description = ""
+                    SeqIO.write(record, out_fname, "fasta")
 
-        logger.info(f"Fasta file {input_fasta.name} headers renamed and saved to {output_fasta.name}")
+            logger.info(f"Fasta file {input_fasta.name} headers renamed and saved to {output_fasta.name}")
 
     logger.info("Sequence design and FASTA processing completed!")
 
