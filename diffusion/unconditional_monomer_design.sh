@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configs
-OUTPUT_BASE_DIR="PATH_TO_OUTPUT_DIR"
+OUTPUT_BASE_DIR="PATH/TO/OUTPUT/DIR"
 RFDIFFUSION_SCRIPT="/opt/RFdiffusion-old/scripts/run_inference.py"
 NUM_DESIGNS=10
 CONTIGS="[100-200]" 
