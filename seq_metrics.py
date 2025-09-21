@@ -88,7 +88,7 @@ def find_longest_repeat(seq: str, k: int) -> int:
     Find the longest run of consecutive repeats of a motif of length k.
 
     Example:
-    seq = "ABABABCD", k=2 -> returns 3 ("AB" repeats 3 times)
+    seq = "LKLKLKRQW", k=2 -> returns 3 ("AB" repeats 3 times)
     seq = "AAAAA", k=1 -> returns 5 ("A" repeats 5 times)
     """
     if k <= 0 or k > len(seq):
