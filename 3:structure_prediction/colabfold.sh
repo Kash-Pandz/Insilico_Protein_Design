@@ -1,6 +1,6 @@
 #!/bin/bash
 module unload python
-module load cuda/12.4.0
+module load cuda/12.4.0 
 module load anaconda
 
 # Activate conda environment
