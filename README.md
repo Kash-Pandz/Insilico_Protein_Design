@@ -1,4 +1,4 @@
-# Protein Design
+# Protein_Design
 
 This repository showcases an in-silico protein design pipeline using RFDiffusion + MPNN Sequence Design + ColabFold. It also includes an evaluation pipeline of various design tasks.
 
