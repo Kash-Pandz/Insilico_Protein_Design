@@ -4,7 +4,7 @@ import subprocess
 import argparse
 from loguru import logger
 from Bio import SeqIO
-from pathlib import Path
+from pathlib import Path 
 import sys
 
 def parse_arguments():
