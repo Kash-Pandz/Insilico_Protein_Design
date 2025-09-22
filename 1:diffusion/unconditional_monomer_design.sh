@@ -5,7 +5,7 @@ OUTPUT_BASE_DIR="PATH/TO/OUTPUT/DIR"
 RFDIFFUSION_SCRIPT="/opt/RFdiffusion-old/scripts/run_inference.py"
 NUM_DESIGNS=10
 CONTIGS="[100-200]" 
-GUIDE_POTENTIAL='["type:monomer_ROG,weight:1,min_dist:5"]'
+GUIDE_POTENTIAL='["type:monomer_ROG,weight:1,min_dist:5"]' 
 GUIDE_SCALE=2
 GUIDE_DECAY="quadratic"
 
