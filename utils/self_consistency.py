@@ -29,7 +29,7 @@ def select_atom_group (
         universe: MDAnalysis Universe object.
         atom_type: 'calpha', 'backbone', 'heavy', 'all'.
         chain_id: Optional chain ID(s).
-        custom: Optional custom selection string.
+        motif: Optional custom selection string.
 
     Returns:
         AtomGroup object of selected atom type.
@@ -114,7 +114,7 @@ def main():
         help="Required chain ID(s) for RMSD, e.g. 'A' or 'B_C'"
     )
     parser.add_argument(
-        "--custom",
+        "--motif",
         type=str,
         help="Optional custom residue selection string"
     )
@@ -142,19 +142,32 @@ def main():
         if args.chain:
             chains = args.chain.split("_")
             for c in chains:
-                
-          
-
-        # Overall RMSD
-        overall_rmsd = get_rmsd(
-            select_atom_group(ref_universe, args.atom_type),
-            select_atom_group(sel_universe, args.atom_type)
-        )
+                chain_rmsd = get_rmsd(
+                    select_atom_group(ref_universe, args.atom_type, chain_id=c),
+                    select_atom_group(sel_universe, args.atom_type, chain_id=c)
+                )
+                row[f"rmsd_{ch}"] = chain_rmsd
 
         # Motif RMSD
-    
+        if args.motif:
+            motif_rmsd = get_rmsd(
+                select_atom_group(ref_universe, args.atom_type, custom=args.motif),
+                select_atom_group(sel_universe, args.atom_type, custom=args.motif)
+            )
+            row["motif_rmsd"] = motif_rmsd
+
+       # TM-Score
+       row["tmscore"] = get_tmscore(args.ref_pdb, sel_pdb, args.tmscore_bin)
+
+       values.append(row)
+
+   # Store RMSD and TM values in dataframe
+   df = pd.DataFrame(values)
+
+   # Save CSV
+   if args.output:
+       df.to_csv(args.output, index=False)
 
 
-
-
-  
+if __name__ == "__main__":
+    main()     
