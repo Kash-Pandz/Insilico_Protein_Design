@@ -1,7 +1,7 @@
 import MDAnalysis as mda
 from MDAnalysis.analysis import rms
 from MDAnalysis.lib.distances import capped_distance
-from MDAnalysis.core.groups import Residue, ResidueGroup
+from MDAnalysis.core.groups import AtomGroup, ResidueGroup
 import numpy as np
 from typing import Dict, Tuple
 
