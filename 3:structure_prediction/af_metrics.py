@@ -23,7 +23,7 @@ def calculate_metrics(json_dir: str) -> Dict[str, Dict[str, Any]]:
         with open(filepath, "r") as f:
             data = json.load(f)
 
-        # Clean model name (remove "_scores_rank_*")
+        # Clean file name
         model_name = re.sub(r"_scores_rank_.*$", "", filepath.stem)
 
         # Extract metrics
