@@ -2,7 +2,7 @@
 
 This repository showcases an in-silico protein design pipeline using RFDiffusion + MPNN Sequence Design + ColabFold. It also includes an evaluation pipeline of various design tasks.
 
-# Overview
+# Scripts
 
 - `ligand_mpnn.py`: Sequence Design (with ligand)
 - `protein_mpnn.py`: Sequence Design (without ligand)
