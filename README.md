@@ -18,11 +18,9 @@ This repository showcases an in-silico protein design pipeline using RFDiffusion
 # Setup
 
 ### ProteinMPNN, SolubleMPNN and LigandMPNN Weights
-- Installation instructions and inference scripts: https://github.com/dauparas/LigandMPNN
+- Clone LigandMPNN repo:https://github.com/dauparas/LigandMPNN
 - Model weights can be downloaded:
-```bash
-get_model_params.sh "./model_params"
-```
+```bash get_model_params.sh "./model_params"```
 
 ### Colab Fold
 - Follow installation instructions:
