@@ -2,9 +2,6 @@
 
 This repository showcases an in-silico protein design pipeline using RFDiffusion + MPNN Sequence Design + ColabFold. It also includes an evaluation pipeline of various design tasks.
 
-
- ProteinMPNN and LigandMPNN, which are graph neural network-based models for protein sequence design. LigandMPNN extends the capabilities of ProteinMPNN by incorporating ligand atoms into the message-passing framework. 
-
 # Overview
 
 - `ligand_mpnn.py`: Sequence Design (with ligand)
