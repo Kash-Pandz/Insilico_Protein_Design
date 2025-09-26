@@ -4,23 +4,48 @@ import subprocess
 import argparse
 from loguru import logger
 from Bio import SeqIO
-from pathlib import Path 
+from pathlib import Path
 import sys
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="LigandMPNN Sequence Design Script")
-    parser.add_argument("--pdb_dir", type=str, required=True, help="Directory containing PDB files.")
-    parser.add_argument("--temps", type=float, nargs='+', required=True, help="Sampling temperatures (e.g., 0.1 0.2 0.3).")
-    parser.add_argument("--fixed_res", type=str, required=True, help="Fixed residues (e.g., 'A1-A10 A12').")
-    parser.add_argument("--redesign_res", type=str, default=None, help="Residues to be redesigned (e.g., 'A13-A16 A18').")
-    parser.add_argument("--omit_AA", type=str, default=None, help="Residues to be omitted from designs (e.g., 'C').")
-    parser.add_argument("--checkpoint_ligandmpnn", type=str, default="/PATH/LigandMPNN/model_params/ligandmpnn_v_32_010_25.pt", help="Path to LigandMPNN model checkpoint.")
-    parser.add_argument("--checkpoint_sc", type=str, default="/PATH/LigandMPNN/model_params/ligandmpnn_sc_v_32_002_16.pt", help="Path to LigandMPNN side chain model checkpoint.")
-    parser.add_argument("--number_of_batches", type=int, default=2, help="Number of batches to run (default: 2).")
-    parser.add_argument("--batch_size", type=int, default=10, help="Batch size for sequence design (default: 10).")
+    parser.add_argument("--pdb_dir", type=str, required=True,
+                        help="Directory containing PDB files.")
+    parser.add_argument("--temps", type=float, nargs='+', required=True,
+                        help="Sampling temperatures (e.g., 0.1 0.2 0.3).")
+    parser.add_argument("--fixed_res", type=str, required=True,
+                        help="Fixed residues (e.g., 'A1-A10 A12').")
+    parser.add_argument("--redesign_res", type=str, default=None,
+                        help="Residues to be redesigned (e.g., 'A13-A16 A18').")
+    parser.add_argument("--omit_AA", type=str, default=None,
+                        help="Residues to be omitted from designs (e.g., 'C').")
+    parser.add_argument("--checkpoint_ligandmpnn", type=str,
+                        default="/PATH/LigandMPNN/model_params/ligandmpnn_v_32_010_25.pt",
+                        help="Path to LigandMPNN model checkpoint.")
+    parser.add_argument("--checkpoint_sc", type=str,
+                        default="/PATH/LigandMPNN/model_params/ligandmpnn_sc_v_32_002_16.pt",
+                        help="Path to LigandMPNN side chain model checkpoint.")
+    parser.add_argument("--number_of_batches", type=int, default=2,
+                        help="Number of batches to run (default: 2).")
+    parser.add_argument("--batch_size", type=int, default=10,
+                        help="Batch size for sequence design (default: 10).")
     return parser.parse_args()
 
-def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpnn, checkpoint_sc, number_of_batches, batch_size):
+
+def run_seq_design(
+    pdb_dir: str,
+    temps: list,
+    fixed_residues: str,
+    redesign_res: str = None,
+    omit_aa: str = None,
+    checkpoint_ligandmpnn: str = None,
+    checkpoint_sc: str = None,
+    number_of_batches: int = 2,
+    batch_size: int = 10,
+):
+    """Run LigandMPNN sequence design pipeline."""
+
     pdb_files = glob.glob(os.path.join(pdb_dir, "*.pdb"))
     if not pdb_files:
         logger.error("No PDB files found in the specified directory!")
@@ -85,7 +110,7 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpn
 
             records = list(SeqIO.parse(input_fasta, "fasta"))
             with open(output_fasta, "w") as out_fname:
-                for i, record in enumerate(records[1:], 1):
+                for i, record in enumerate(records, 1):
                     new_header = f"{pdb_name}_temp_{temp_str}_seq_{i}"
                     record.id = new_header
                     record.description = ""
@@ -95,18 +120,21 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_ligandmpn
 
     logger.info("Sequence design and FASTA processing completed!")
 
+
 if __name__ == "__main__":
     logger.remove()
     logger.add(sys.stdout, level="INFO", format="{time} {level} {message}")
     args = parse_arguments()
+
     run_seq_design(
-        args.pdb_dir,
-        args.temps,
-        args.fixed_res,
-        args.omit_AA,
-        args.checkpoint_ligandmpnn,
-        args.checkpoint_sc,
-        args.number_of_batches,
-        args.batch_size,
-        args.redesign_res,
+        pdb_dir=args.pdb_dir,
+        temps=args.temps,
+        fixed_residues=args.fixed_res,
+        redesign_res=args.redesign_res,
+        omit_aa=args.omit_AA,
+        checkpoint_ligandmpnn=args.checkpoint_ligandmpnn,
+        checkpoint_sc=args.checkpoint_sc,
+        number_of_batches=args.number_of_batches,
+        batch_size=args.batch_size,
     )
+
