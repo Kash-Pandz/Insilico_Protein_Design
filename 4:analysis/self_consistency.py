@@ -16,7 +16,7 @@ ATOM_SELECTIONS = {
 }
 
 
-def select_atom_group (
+def select_atom_group(
     universe: mda.Universe, 
     atom_type: str,
     chain_id: str = None, 
