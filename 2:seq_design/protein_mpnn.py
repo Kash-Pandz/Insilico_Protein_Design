@@ -19,19 +19,19 @@ def parse_arguments():
     parser.add_argument("--batch_size", type=int, default=10, help="Batch size for sequence design (default: 10).")
     return parser.parse_args()
 
-def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_proteinmpnn, number_of_batches, batch_size):
+def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint, model_type, number_of_batches, batch_size):
     pdb_files = glob.glob(os.path.join(pdb_dir, "*.pdb"))
     if not pdb_files:
         logger.error("No PDB files found in the specified directory!")
         sys.exit(1)
 
     # Select model type and checkpoint
-    if args.model_type == "protein_mpnn":
+    if model_type == "protein_mpnn":
         checkpoint_flag = "--checkpoint_protein_mpnn"
-        checkpoint = args.checkpoint or "./model_params/proteinmpnn_v_48_020.pt"
+        checkpoint = checkpoint or "./model_params/proteinmpnn_v_48_020.pt"
     else:
         checkpoint_flag = "--checkpoint_soluble_mpnn"
-        checkpoint = args.checkpoint or "./model_params/solublempnn_v_48_020.pt"
+        checkpoint = checkpoint or "./model_params/solublempnn_v_48_020.pt"
 
     if not Path(checkpoint).exists():
         logger.error(f"Checkpoint file not found: {checkpoint}")
@@ -49,7 +49,7 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_proteinmp
                 "--seed", "111",
                 "--pdb_path", pdb_file,
                 "--out_folder", str(out_dir),
-                "--model_type", args.model_type,
+                "--model_type", model_type,
                 checkpoint_flag, checkpoint,
                 "--number_of_batches", str(number_of_batches),
                 "--batch_size", str(batch_size),
@@ -57,10 +57,10 @@ def run_seq_design(pdb_dir, temps, fixed_residues, omit_aa, checkpoint_proteinmp
                 "--fixed_residues", fixed_residues,
             ]
 
-            if args.omit_aa:
-                mpnn_cmd.extend(["--omit_AA", args.omit_aa])
+            if omit_aa:
+                mpnn_cmd.extend(["--omit_AA", omit_aa])
 
-            logger.info(f"Running {args.model_type} on {pdb_name} at T={temp}")
+            logger.info(f"Running {model_type} on {pdb_name} at T={temp}")
             subprocess.run(mpnn_cmd, check=True)
     
             # Process FASTA files
@@ -100,7 +100,8 @@ if __name__ == "__main__":
         temps=args.temps,
         fixed_residues=args.fixed_res,
         omit_aa=args.omit_AA,
-        checkpoint_proteinmpnn=args.checkpoint_proteinmpnn
+        checkpoint=args.checkpoint,
+        model_type=args.model_type,
         number_of_batches=args.number_of_batches,
         batch_size=args.batch_size
     )
