@@ -95,4 +95,12 @@ if __name__ == "__main__":
     logger.remove()
     logger.add(sys.stdout, level="INFO", format="{time} {level} {message}")
     args = parse_arguments()
-    run_seq_design(args)
+    run_seq_design(
+        pdb_dir=args.pdb_dir,
+        temps=args.temps,
+        fixed_residues=args.fixed_res,
+        omit_aa=args.omit_AA,
+        checkpoint_proteinmpnn=args.checkpoint_proteinmpnn
+        number_of_batches=args.number_of_batches,
+        batch_size=args.batch_size
+    )
