@@ -2,6 +2,10 @@
 
 This repository showcases an in-silico protein design pipeline using RFDiffusion + MPNN Sequence Design + ColabFold. It also includes an evaluation pipeline of various design tasks.
 
+# Setup
+
+
+
 # Scripts
 
 - `ligand_mpnn.py`: Sequence Design (with ligand)
@@ -14,9 +18,9 @@ This repository showcases an in-silico protein design pipeline using RFDiffusion
 
 # Setup
 
-### ProteinMPNN, SolubleMPNN and LigandMPNN Weights
+### Inverse Folding 
 - Clone LigandMPNN repo:https://github.com/dauparas/LigandMPNN
-- Model weights can be downloaded:
+- Model weights for proteinmpnn, solublempnn and ligandmpnn can be downloaded:
   
 ```bash get_model_params.sh "./model_params"```
 
