@@ -110,7 +110,7 @@ def run_seq_design(
 
             records = list(SeqIO.parse(input_fasta, "fasta"))
             with open(output_fasta, "w") as out_fname:
-                for i, record in enumerate(records, 1):
+                for i, record in enumerate(records[1:], 1):
                     new_header = f"{pdb_name}_temp_{temp_str}_seq_{i}"
                     record.id = new_header
                     record.description = ""
