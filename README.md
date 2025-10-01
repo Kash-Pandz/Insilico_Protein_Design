@@ -4,6 +4,19 @@ This repository showcases an in-silico protein design pipeline using RFDiffusion
 
 # Setup
 
+### RFDiffusion
+
+
+### Inverse Folding 
+- Clone LigandMPNN repo:https://github.com/dauparas/LigandMPNN
+- Model weights for proteinmpnn, solublempnn and ligandmpnn can be downloaded:
+  
+```bash get_model_params.sh "./model_params"```
+
+### Colab Fold 
+- Follow installation instructions:
+  -  https://github.com/sokrypton/ColabFold
+  -  https://github.com/YoshitakaMo/localcolabfold
 
 
 # Scripts
@@ -18,16 +31,7 @@ This repository showcases an in-silico protein design pipeline using RFDiffusion
 
 # Setup
 
-### Inverse Folding 
-- Clone LigandMPNN repo:https://github.com/dauparas/LigandMPNN
-- Model weights for proteinmpnn, solublempnn and ligandmpnn can be downloaded:
-  
-```bash get_model_params.sh "./model_params"```
 
-### Colab Fold
-- Follow installation instructions:
-  -  https://github.com/sokrypton/ColabFold
-  -  https://github.com/YoshitakaMo/localcolabfold
 
 # Steps:
 
