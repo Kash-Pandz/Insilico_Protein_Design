@@ -25,13 +25,13 @@ def compute_pll(seq, model, tokenizer, device, batch_size=64):
     return pll
 
 def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D", batch_size=64):
+    device = torch.device("cuda")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = EsmForMaskedLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map="auto")
+    model = EsmForMaskedLM.from_pretrained(model_name, torch_dtype=torch.bfloat16).to(device)
     try:
         model = torch.compile(model)
     except Exception:
         pass
-    device = torch.device("cuda")
     model.eval()
     torch.backends.cudnn.benchmark = True
 
@@ -39,7 +39,7 @@ def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D", batch_size=
     results = []
     for record in records:
         seq = str(record.seq)
-        pll = compute_pll_batched_h100(seq, model, tokenizer, device, batch_size)
+        pll = compute_pll(seq, model, tokenizer, device, batch_size)
         pll_avg = pll / len(seq)
         results.append({"id": record.id, "sequence": seq, "pll": pll, "pll_avg": pll_avg})
 
@@ -52,5 +52,6 @@ if __name__ == "__main__":
     fasta_file = "generated_sequences.fasta"
     df = rank_seqs(fasta_file, batch_size=64)
     df.to_csv("pll_ranked_sequences.csv", index=False)
+
 
  
