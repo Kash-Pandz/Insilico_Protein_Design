@@ -1,13 +1,16 @@
 import torch
 import numpy as np
+import pandas as pd
 from transformers import EsmForMaskedLM, AutoTokenizer
 from Bio import SeqIO
 
-
 def compute_pll(seq: str, model, tokenizer, device) -> float:
-    """Compute the pseudo-log-likelihood scores for each generated sequence"""
-    pll = 0.0
+    """Compute pseudo-log-likelihood for a protein sequence."""
     seq = seq.upper()
+    valid_aas = set(list("ACDEFGHIKLMNPQRSTVWY"))
+    seq = "".join([aa if aa in valid_aas else "X" for aa in seq])
+    
+    pll = 0.0
 
     for i, aa in enumerate(seq):
         masked_seq = seq[:i] + tokenizer.mask_token + seq[i + 1:]
@@ -20,14 +23,12 @@ def compute_pll(seq: str, model, tokenizer, device) -> float:
         mask_idx = (inputs.input_ids[0] == tokenizer.mask_token_id).nonzero(as_tuple=True)[0].item()
         aa_id = tokenizer.convert_tokens_to_ids(aa)
         log_prob = torch.log_softmax(logits[mask_idx], dim=-1)[aa_id]
-        pll += log_prob.item()
+        pll += float(log_prob)
     
     return pll
 
-
 def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D"):
-    """Rank the generated sequences based on pseudo-log-likelihood scores."""
-    
+    """Rank protein sequences by average PLL using ESM2."""
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = EsmForMaskedLM.from_pretrained(model_name)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -47,5 +48,8 @@ def rank_seqs(fasta_path, model_name="facebook/esm2_t33_650M_UR50D"):
             "pll_avg": pll_avg
         })
 
-    ranked = sorted(results, key=lambda x: x["pll_avg"], reverse=True)
-    return ranked
+    df = pd.DataFrame(results)
+    df["rank"] = df["pll_avg"].rank(ascending=False, method="dense").astype(int)
+    df = df.sort_values("pll_avg", ascending=False).reset_index(drop=True)
+
+    return df
